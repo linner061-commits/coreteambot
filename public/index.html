@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Multi Bot QR</title>
+</head>
+<body>
+  <h2>Generate WhatsApp QR</h2>
+  <button onclick="getQR()">Generate QR</button>
+  <br><br>
+  <img id="qr" />
+
+  <script>
+    async function getQR() {
+      const res = await fetch("/generate");
+      const data = await res.json();
+      document.getElementById("qr").src =
+        "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=" +
+        encodeURIComponent(data.qr);
+    }
+  </script>
+</body>
+</html>
